@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+    <meta name="description" content="Etherpad - collaborative editing integration. Files will be deleted after 30 days." />
+    <meta name="show-in" content="*" />
+    <meta name="fetch" content="true" />
+    <title>Etherpad</title>
+  
+    <script src="https://edrys-org.github.io/edrys/module/edrys.js"></script>
+ 
+    <script defer src="https://edrys-org.github.io/edrys/module/vendor/alpine.min.js"></script>
+</head>
+
+<body>
+    <template x-if="!!edrys && !!url" x-data="{ edrys: undefined, url: undefined }" 
+              x-init="Edrys.onUpdate((e) => { 
+                            edrys = {...e}
+                            
+                            let room = encodeURIComponent(edrys.liveRoom.name).replace(/[\W_]+/g, '')
+                            url = `https://yopad.eu/p/edrys-${ room }-${ edrys.class_id }?showControls=${ Edrys.module?.config?.showControls ? true : false }&showChat=${ Edrys.module?.config?.showChat || false }&showLineNumbers=${ Edrys.module?.config?.showLineNumbers || false }&useMonospaceFont=${ Edrys.module?.config?.useMonospaceFont ? true : false }` 
+                      })">
+
+        <iframe name="embed_readwrite" :src="url" frameborder="0" style="width:100%;height:100%;"></iframe>
+    </template>
+
+    <style>
+        body, html, iframe {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            overflow: hidden;
+        }
+    </style>
+</body>
+</html>
