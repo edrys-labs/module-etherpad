@@ -5,7 +5,7 @@ Usage
 
 Simply add this URL to your class modules:
 
-`https://cross-lab-project.github.io/edrys_module-etherpad/index.html`
+`https://edrys-labs.github.io/edrys_module-etherpad/index.html`
 
 ## Configuration
 
